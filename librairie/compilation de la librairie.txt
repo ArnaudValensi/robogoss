@@ -1,0 +1,6 @@
+G:\>d:
+d:\>cd Bureau\Arduino\Qt\librairie
+d:\Bureau\Arduino\Qt\librairie>cd qextserialport-1.2win-alpha
+d:\Bureau\Arduino\Qt\librairie\qextserialport-1.2win-alpha>qmake qextserialport.pro
+d:\Bureau\Arduino\Qt\librairie\qextserialport-1.2win-alpha>mingw32-make
+d:\Bureau\Arduino\Qt\librairie\qextserialport-1.2win-alpha>
