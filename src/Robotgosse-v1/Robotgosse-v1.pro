@@ -17,6 +17,7 @@ CONFIG(debug, debug|release): DESTDIR = $$OUT_PWD/debug
 
 DLLFiles.path = $$DESTDIR
 DLLFiles.files += $$files("$$LIB_PATH/vlc/*.dll")
+DLLFiles.files += $$files("$$LIB_PATH/vlc/plugins")
 DLLFiles.files += $$files("$$LIB_PATH/qextserialport/Qt5ExtSerialPort1.dll")
 INSTALLS += DLLFiles
 
