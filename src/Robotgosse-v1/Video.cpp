@@ -31,7 +31,7 @@ void Video::start() {
 	libvlc_media_player_set_media(mp, m);
 
 #if defined(Q_OS_WIN)
-	libvlc_media_player_set_hwnd(mp, windid);
+    libvlc_media_player_set_hwnd(mp, &windid);
 #elif defined(Q_OS_MAC)
 	libvlc_media_player_set_drawable(mp, windid);
 #else //Linux

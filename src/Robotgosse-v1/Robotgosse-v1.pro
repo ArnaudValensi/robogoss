@@ -10,20 +10,29 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = Robotgosse-v1
 TEMPLATE = app
+LIB_PATH = "$$_PRO_FILE_PWD_/../../librairie"
 
-INCLUDEPATH += "$$_PRO_FILE_PWD_/../../librairie/qextserialport/src"
+CONFIG(release, debug|release): DESTDIR = $$OUT_PWD/release
+CONFIG(debug, debug|release): DESTDIR = $$OUT_PWD/debug
 
-win32: LIBS +=  "$$_PRO_FILE_PWD_/../../librairie/qextserialport/Qt5ExtSerialPort1.dll"
-else: unix: LIBS +=  -L"$$_PRO_FILE_PWD_/../../librairie/qextserialport" -lQt5ExtSerialPort
+DLLFiles.path = $$DESTDIR
+DLLFiles.files += $$files("$$LIB_PATH/vlc/*.dll")
+DLLFiles.files += $$files("$$LIB_PATH/qextserialport/Qt5ExtSerialPort1.dll")
+INSTALLS += DLLFiles
+
+INCLUDEPATH += "$$LIB_PATH/qextserialport/src"
+
+win32: LIBS +=  "$$LIB_PATH/qextserialport/Qt5ExtSerialPort1.dll"
+else: unix: LIBS +=  -L"$$LIB_PATH/qextserialport" -lQt5ExtSerialPort
 
 # VLC
 DEFINES += _WIN32_WINNT=0x0501
 DEFINES += WINVER=0x0501
 
-win32:INCLUDEPATH += $$(BOOST_ROOT) $$(VLC_SDK)/include
+win32:INCLUDEPATH += $$LIB_PATH/vlc/include
 
 unix:LIBS += -L/usr/lib -lpthread -lvlc -g
-win32:LIBS += -L$$(BOOST_ROOT)/stage/lib $$(VLC_SDK)/lib/libvlc.lib -lws2_32
+win32:LIBS += $$LIB_PATH/vlc/lib/libvlc.lib -lws2_32
 
 
 SOURCES += main.cpp\
